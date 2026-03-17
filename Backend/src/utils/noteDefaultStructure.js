@@ -1,0 +1,17 @@
+export const noteDefaultStructure = {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Untitled Note"
+          }
+        ]
+      }
+    ]
+  }
