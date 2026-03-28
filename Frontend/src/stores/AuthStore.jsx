@@ -18,11 +18,10 @@ export const useAuthStore = create(
           const res = await API.get("/auth/logout", { skipInterceptor: true });
           Toaster({ title: res.data.message, status: "success" });
           set({ user: null });
-          navigate("/");
+          window.location.href=`${import.meta.env.VITE_FRONTEND_URL}/`;
         } catch (error) {
-          navigate("/");
           set({ user: null });
-          Toaster({ title: "Not able to Logout!!", status: "error" });
+          window.location.href=`${import.meta.env.VITE_FRONTEND_URL}/`;
         }
       },
     }),

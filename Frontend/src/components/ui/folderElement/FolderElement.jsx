@@ -9,6 +9,7 @@ const FolderElement = ({
   onDelete,
   isLoading,
   _id,
+  ele
 }) => {
   const {
     name,
@@ -47,7 +48,7 @@ const FolderElement = ({
       <div className="w-full px-1 flex flex-col items-center justify-center min-h-[32px]">
         {isEditing ? (
           <div className="relative w-full">
-            {isLoading && (
+            {ele.isLoading && (
               <Loader2
                 size={12}
                 className="absolute left-1 top-1/2 -translate-y-1/2 animate-spin text-blue-500"
@@ -70,12 +71,12 @@ const FolderElement = ({
             onClick={startEditing}
             title="Click to rename"
           >
-            {isLoading && (
+            {/* {ele.isLoading && (
               <Loader2
                 size={12}
                 className="animate-spin text-blue-500 shrink-0"
               />
-            )}
+            )} */}
             <span className="text-sm font-medium text-gray-700 truncate select-none">
               {name}
             </span>

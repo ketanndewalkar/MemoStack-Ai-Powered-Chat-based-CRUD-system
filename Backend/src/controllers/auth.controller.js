@@ -71,7 +71,8 @@ export const refreshAccessToken = async (req, res) => {
   try {
     
     const token = req.cookies.refreshToken;
-    if (!token) return res.status(400).json({ message: "no token" });
+    console.log(req.cookies)
+    if (!token) return res.status(400).json({ message: "relogin" });
     const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
     const existUser = await user.findById(decoded.id);
     if (!existUser || existUser.refreshToken !== token) {

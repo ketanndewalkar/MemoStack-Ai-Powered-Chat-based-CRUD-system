@@ -8,7 +8,7 @@ const useFolderElement = ({ initialName, onRename,_id }) => {
   const inputRef = useRef(null);
   const queryClient = useQueryClient();
   const updateLoadingState = (id, isLoading) => {
-    queryClient.setQueryData(["folders"], (oldData) => {
+    queryClient.setQueryData(["folder"], (oldData) => {
       if (!oldData) return oldData;
 
       return oldData.map((item) => {

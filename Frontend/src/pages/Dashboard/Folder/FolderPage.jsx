@@ -17,7 +17,7 @@ const Folderpage = () => {
   const { data, isPending } = useQuery({
     queryKey: ["folder"],
     queryFn: fetchFolders,
-    select: (data) => data.map((item) => ({ ...item, isLoading: false })),
+    select: (data) => data.map((item) => ({ ...item, isLoading: item.isLoading || false })),
   });
 
   const { mutate: makeFolder } = useMutation({
@@ -70,7 +70,7 @@ const Folderpage = () => {
     },
   });
 
-  const { mutate: updateFolderFn } = useMutation({
+  const { mutateAsync: updateFolderFn } = useMutation({
     mutationFn: ({ _id, finalName }) => updateFolderName(_id, finalName),
     onError: (err) => errorHandler(err),
   });
@@ -144,6 +144,7 @@ const Folderpage = () => {
               {data.map((ele) => (
                 
                   <FolderElement
+                  ele={ele}
                     key={ele._id}
                     _id={ele._id}
                     initialName={ele.name}
