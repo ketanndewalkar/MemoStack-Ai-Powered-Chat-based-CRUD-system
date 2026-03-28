@@ -2,7 +2,7 @@ export const accessTokenOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production" ? true : false,
   sameSite: "strict",
-  maxAge: 60*60*1000
+  maxAge: 60 * 60 * 1000
 };
 
 export const refreshTokenOptions = {
