@@ -1,17 +1,28 @@
 import OpenAi from "openai"
 
-const client = new OpenAi({
-    apiKey:"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",
-    baseURL: "https://openrouter.ai/api/v1", 
-})
+let client;
 
-export const llmCall = async (message) =>{
+export const llmCall = async (message) => {
+    if (!client) {
+        // Diagnostic log (safe: only prefix and length)
+        const key = process.env.API_KEY || "";
+        console.log(`LLM Client initializing. Key detected: ${key.substring(0, 7)}... | Length: ${key.length}`);
+        
+        client = new OpenAi({
+            apiKey: key,
+            baseURL: "https://openrouter.ai/api/v1",
+            defaultHeaders: {
+                "HTTP-Referer": "http://localhost:5173", // Optional, for OpenRouter rankings
+                "X-Title": "Personal Knowledge Vault", // Optional
+            }
+        })
+    }
     try {
         const res = await client.chat.completions.create({
-            model:"openai/gpt-oss-120b",
-            messages:[...message]
+            model: "openai/gpt-oss-120b",
+            messages: [...message]
         })
-        console.log(typeof(res.choices[0].message.content),":",res.choices[0].message.content)
+
         return res.choices[0].message.content
     } catch (error) {
         console.log("Error inside llmCall:", error)

@@ -25,7 +25,7 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/folder", folderRoute);
 app.use("/api/v1/note", noteRoute);
 app.use("/api/v1/link", linkRoute);
-app.use("/api/v1/convo",ConversationRoute);
+app.use("/api/v1/convo", ConversationRoute);
 
 mongoDbConnect()
   .then((res) => {
