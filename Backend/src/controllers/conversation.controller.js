@@ -37,6 +37,8 @@ export const handleChat = async (req, res) => {
     // const session = await Session.findById(sessionId);
     // const conversation = await Conversation.findOne({ sessionId });
     const conversation = await Conversation.findOne({ sessionId:"69cfcccc86db8f2a96d4ff3e" });
+    console.log("session : ",session)
+    console.log("conversation : ",conversation)
     if (!session || !conversation) {
       res.status(500).json({
         message: "Server Error",
