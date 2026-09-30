@@ -6,7 +6,6 @@ import Contact from "../pages/Contact/Contact";
 import About from "../pages/About/About";
 import HomePage from "../pages/Home/HomePage";
 import Profile from "../pages/Dashboard/Profile/Profile";
-import LinkPage from "../pages/Dashboard/Link/LinkPage";
 import Features from "../pages/Home/Features";
 import CTASection from "../pages/Home/CTASection";
 import FeatureExplanation from "../pages/Home/FeatureExplanation";
@@ -106,10 +105,6 @@ const Protectedroutes = [
       {
         path: "folders/:id/note",
         element: <NotePage />,
-      },
-      {
-        path: "links",
-        element: <LinkPage />,
       },
     ],
   },

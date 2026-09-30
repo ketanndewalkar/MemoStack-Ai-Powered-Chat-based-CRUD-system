@@ -23,6 +23,6 @@ const noteSchema = new mongoose.Schema({
         ref: "User",
         required: true
     }
-}, { timestamp: true })
+}, { timestamps: true })
 
 export default mongoose.model("Note", noteSchema);

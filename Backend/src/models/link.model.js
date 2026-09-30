@@ -14,6 +14,6 @@ const linkSchema = new mongoose.Schema({
     type:String,
     required:true
   }
-},{timestamp:true});
+},{timestamps:true});
 
 export default mongoose.model("Link",linkSchema)

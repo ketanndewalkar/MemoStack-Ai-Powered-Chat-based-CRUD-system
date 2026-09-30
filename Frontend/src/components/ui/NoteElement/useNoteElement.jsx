@@ -1,34 +1,54 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const useNoteElement = ({ note,onRename }) => {
+const useNoteElement = ({ note, onRename }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(note.name || "");
+  const [name, setName] = useState(note?.name || "");
   const inputRef = useRef(null);
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
-      handleRename(note._id,name)
-    },1000)
-    return ()=>clearTimeout(timer);
-  },[name])
 
-    useEffect(() => {
+  useEffect(() => {
+    setName(note?.name || "");
+  }, [note?.name]);
+
+  useEffect(() => {
     if (isEditing && inputRef.current) {
       inputRef.current.focus();
       inputRef.current.select();
     }
   }, [isEditing]);
 
-  const handleRename = (id,finalName) =>{
-    if(name=="" || name === note.name){
-      return;
+  const saveRename = () => {
+    const trimmed = name.trim();
+    if (trimmed && trimmed !== note.name) {
+      onRename({ noteId: note._id, name: trimmed });
+    } else {
+      setName(note.name || "");
     }
-    onRename({noteId:id,name:finalName});
-  }
+    setIsEditing(false);
+  };
+
   const handleChange = (e) => {
     setName(e.target.value);
-  }
+  };
 
-  return { isEditing, setIsEditing, name, setName ,handleChange,inputRef};
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      saveRename();
+    } else if (e.key === "Escape") {
+      setName(note.name || "");
+      setIsEditing(false);
+    }
+  };
+
+  return {
+    isEditing,
+    setIsEditing,
+    name,
+    setName,
+    handleChange,
+    handleKeyDown,
+    saveRename,
+    inputRef,
+  };
 };
 
 export default useNoteElement;

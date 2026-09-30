@@ -1,14 +1,19 @@
 import API from "../../../../services/api/axiosInstance";
-export const getStats = async () => {
-  const [folders, notes, links] = await Promise.all([
-    API.get("/folder/all"),
-    API.get("/note/all",{ skipInterceptor: true }),
-    API.get("/link/all",{ skipInterceptor: true }),
-  ]);
-  // return [folders.data.data.length,notes.data.data.length,notes.data.data.length]
-  return [
-  { title: "Total Folders", value: folders.data.data.length, change: "+12%", color: "cyan" },
-  { title: "Total Notes", value: notes.data.data.length, change: "+8%", color: "cyan" },
-  { title: "Saved Links", value: links.data.data.length, change: "+4%", color: "cyan" },
-]
+
+export const getDashboardData = async () => {
+  const res = await API.get("/dashboard");
+  return res.data.data;
+};
+
+// Backward compatibility alias for any existing imports
+export const getStats = getDashboardData;
+
+export const submitTestimonialApi = async (data) => {
+  const res = await API.post("/dashboard/testimonial", data);
+  return res.data;
+};
+
+export const getTestimonialsApi = async () => {
+  const res = await API.get("/dashboard/testimonials");
+  return res.data.data;
 };

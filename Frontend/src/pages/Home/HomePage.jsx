@@ -35,7 +35,7 @@ const HomeHero = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Save notes, links, and documents in organized folders. Search, edit,
+              Save notes, ideas, and documents in organized folders. Search, edit,
               and access your knowledge anytime, from anywhere with MemoStack.
             </p>
 
@@ -105,8 +105,8 @@ const HomeHero = () => {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-lg bg-orange-100 flex items-center justify-center text-xs text-orange-600 font-bold">📂</span>
-                      <span className="text-sm font-bold text-slate-800">Web Clips</span>
+                      <span className="w-6 h-6 rounded-lg bg-orange-100 flex items-center justify-center text-xs text-orange-600 font-bold">📝</span>
+                      <span className="text-sm font-bold text-slate-800">Meeting Notes</span>
                     </div>
                     <span className="text-[10px] text-slate-400 font-bold">45 items</span>
                   </div>

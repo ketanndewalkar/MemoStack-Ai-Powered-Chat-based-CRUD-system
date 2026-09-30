@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { LayoutDashboard, FolderOpen, StickyNote, Link as LinkIcon } from "lucide-react";
+import { LayoutDashboard, FolderOpen } from "lucide-react";
 import logo from "../../../../public/logo.png"
 const Sidebar = ({ open, setOpen }) => {
   const navItems = [

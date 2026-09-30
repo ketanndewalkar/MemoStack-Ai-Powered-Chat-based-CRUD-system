@@ -9,6 +9,8 @@ import folderRoute from "./src/routes/folder.route.js";
 import noteRoute from "./src/routes/note.route.js";
 import linkRoute from "./src/routes/link.route.js";
 import ConversationRoute from "./src/routes/conversation.route.js";
+import dashboardRoute from "./src/routes/dashboard.route.js";
+import { healthRoute } from "./src/controllers/health.controller.js";
 const PORT = process.env.PORT || 8080;
 const app = express();
 app.use(
@@ -21,13 +23,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use("/api/v1/health", healthRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/folder", folderRoute);
 app.use("/api/v1/note", noteRoute);
 app.use("/api/v1/link", linkRoute);
 app.use("/api/v1/convo", ConversationRoute);
+app.use("/api/v1/dashboard", dashboardRoute);
 
-mongoDbConnect()
+await mongoDbConnect()
   .then((res) => {
     console.log("Connected to the MongoDb");
     app.listen(PORT, () => {

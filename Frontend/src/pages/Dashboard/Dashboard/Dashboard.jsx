@@ -3,44 +3,34 @@ import StatsCards from "./StatsCards";
 import AnalyticsSection from "./AnalyticsSection";
 import RecentFolders from "./RecentFolders";
 import TestimonialsSetup from "./TestimonialsSetup";
-import { getStats } from "./Handler/FetchDashboardHandler";
+import { getDashboardData } from "./Handler/FetchDashboardHandler";
 import { useQuery } from "@tanstack/react-query";
-import { errorHandler } from "../../../utils/errorHandler";
 
 const Dashboard = () => {
-
   const { data, isPending, error } = useQuery({
-  queryKey: ['stats'],
-  queryFn: getStats
-})
-
+    queryKey: ["dashboard"],
+    queryFn: getDashboardData,
+  });
 
   return (
-    <div className="min-h-screen">
-
+    <div className="min-h-screen pb-10">
       <h1 className="text-2xl font-semibold text-gray-800 mb-6">
         My Dashboard
       </h1>
 
-      {/* Stats */}
-      <StatsCards data={data} isPending={isPending}/>
+      {/* Stats Cards */}
+      <StatsCards data={data?.stats} isPending={isPending} />
 
-      {/* Analytics + Recent */}
-
-      <div className="grid grid-cols-2 gap-6 mt-6 max-md:grid-cols-1">
-
-        <AnalyticsSection data={data} isPending={isPending}/>
-
-        <RecentFolders data={data} isPending={isPending}/>
-
+      {/* Analytics + Recent Folders */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <AnalyticsSection data={data?.activities} isPending={isPending} />
+        <RecentFolders data={data?.recentFolders} isPending={isPending} />
       </div>
 
       {/* Testimonials */}
-
       <div className="mt-6">
-        <TestimonialsSetup data={data} isPending={isPending}/>
+        <TestimonialsSetup data={data?.testimonials} isPending={isPending} />
       </div>
-
     </div>
   );
 };
